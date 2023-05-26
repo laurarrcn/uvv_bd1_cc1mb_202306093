@@ -2,7 +2,9 @@
 
 DROP DATABASE IF EXISTS uvv;
 
+--Esse comando apaga o schema
 
+DROP SCHEMA IF EXISTS  lojas;
 
 
 -- Esse comando apaga o usuario (caso exista)
@@ -253,4 +255,3 @@ CHECK (status IN ('Pendente', 'Em andamento', 'Concluído'));
 ALTER TABLE envios
 ADD CONSTRAINT status_e
 CHECK (status IN ('Aguardando envio', 'À caminho', 'Entregue'));
-               
