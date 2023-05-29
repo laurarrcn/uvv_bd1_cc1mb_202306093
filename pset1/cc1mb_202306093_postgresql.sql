@@ -16,7 +16,7 @@ DROP USER IF EXISTS laura;
 
 -- Esse comando cria usuário com senha
 
-CREATE ROLE laura WITH LOGIN PASSWORD 'computacao@raiz';
+CREATE USER laura WITH LOGIN PASSWORD 'computacao@raiz';
 
 
 
@@ -31,7 +31,9 @@ LC_CTYPE 'pt_BR.UTF-8'
 ALLOW_CONNECTIONS true;
 
 	  
-	  
+--Esse comando troca a conexão do usuário Postgres para o banco de dados uvv
+
+\c 'dbname=uvv user=laura password=computacao@raiz';	  
 	  
 --Agora conectando ao banco de dados uvv, com o usuário laura
 	 
@@ -39,16 +41,11 @@ ALLOW_CONNECTIONS true;
 
 -- Esse comando cria o schema
 
-CREATE SCHEMA lojas;
+CREATE SCHEMA AUTHORIZATION laura;
 
 --Esse comando define o search path
 
 ALTER USER laura SET SEARCH_PATH TO lojas, "$user", public;
-
-
---Esse comando troca a conexão do usuário Postgres para o banco de dados uvv
-
-\c 'dbname=uvv user=laura password=computacao@raiz';
 
 
 ---Esse comando define o search path
