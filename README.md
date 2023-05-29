@@ -7,7 +7,7 @@ Feito pela aluna Laura Roni Rocio
 
 Turma: CC1MB matrícula: 202306093
 
-Monitora: Suelen
+Monitora: Suelen Miranda Amorim
 
 ____________________________________________________
 1.0 Descrição geral do projeto:
