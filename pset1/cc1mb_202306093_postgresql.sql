@@ -14,7 +14,7 @@ DROP USER IF EXISTS laura;
 
 
 
--- Esse comando criar usuário com senha
+-- Esse comando cria usuário com senha
 
 CREATE ROLE laura WITH LOGIN PASSWORD 'computacao@raiz';
 
@@ -41,13 +41,19 @@ ALLOW_CONNECTIONS true;
 
 CREATE SCHEMA lojas;
 
+--Esse comando define o search path
 
+ALTER USER laura SET SEARCH_PATH TO lojas, "$user", public;
+
+
+--Esse comando troca a conexão do usuário Postgres para o banco de dados uvv
 
 \c 'dbname=uvv user=laura password=computacao@raiz';
 
 
+---Esse comando define o search path
 
-
+SET SEARCH_PATH TO lojas, "$user" , public; 
 
 
 --Esse comando cria a tabela produtos;
@@ -234,7 +240,7 @@ NOT DEFERRABLE;
 ---- Estes comandos adicionam as constraints obrigatorias
 
 
-       ALTER TABLE produtos
+ALTER TABLE produtos
 ADD CONSTRAINT preco_uni
 CHECK (preco_unitario>0);
 
@@ -247,11 +253,11 @@ CHECK ((endereco_web IS NOT NULL AND endereco_fisico IS NULL) OR (endereco_web I
 
 
 ALTER TABLE pedidos
-ADD CONSTRAINT status_p
-CHECK (status IN ('Pendente', 'Em andamento', 'Concluído'));
+ADD CONSTRAINT status_pedidos
+CHECK (status IN ('CANCELADO', 'COMPLETO', 'ABERTO', 'PAGO', 'REEMBOLSADO', 'ENVIADO'));
 
 
 
 ALTER TABLE envios
-ADD CONSTRAINT status_e
-CHECK (status IN ('Aguardando envio', 'À caminho', 'Entregue'));
+ADD CONSTRAINT status_envio
+CHECK (status IN ('CRIADO', 'ENVIADO', 'TRANSITO', 'ENTREGUE'));
