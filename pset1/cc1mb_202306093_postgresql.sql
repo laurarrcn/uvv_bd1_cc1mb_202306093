@@ -41,7 +41,7 @@ ALLOW_CONNECTIONS true;
 
 -- Esse comando cria o schema
 
-CREATE SCHEMA AUTHORIZATION laura;
+CREATE SCHEMA lojas AUTHORIZATION laura;
 
 --Esse comando define o search path
 
